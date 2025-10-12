@@ -4,6 +4,7 @@ import com.devit.quizapp.entity.Question;
 import com.devit.quizapp.repository.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -19,5 +20,10 @@ public class QuestionService {
 
     public List<Question> getQuestionsByCategory(String category) {
         return questionRepository.findByCategory(category.toLowerCase());
+    }
+
+    public String addQuestion(Question question) {
+        questionRepository.save(question);
+        return "Question added successfully";
     }
 }
