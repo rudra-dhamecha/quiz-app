@@ -1,6 +1,7 @@
 package com.devit.quizapp.controller;
 
 import com.devit.quizapp.dto.QuestionDTO;
+import com.devit.quizapp.entity.Question;
 import com.devit.quizapp.entity.Quiz;
 import com.devit.quizapp.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,10 @@ public class QuizController {
     @GetMapping("get/{id}")
     public ResponseEntity<List<QuestionDTO>> getQuiz(@PathVariable Integer id) {
         return new ResponseEntity<>(quizService.getQuiz(id), HttpStatus.OK);
+    }
+
+    @PostMapping("submit/{id}")
+    public ResponseEntity<String> submitQuiz(@PathVariable Integer id, @RequestBody List<Question> questions) {
+        return new ResponseEntity<>(quizService.submitQuiz(id, questions), HttpStatus.OK);
     }
 }
